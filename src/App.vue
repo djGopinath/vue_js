@@ -1,7 +1,13 @@
 <template>  
-//Accessing Methods
-<h2>Add Mehtod - {{add(2,4,4)}}</h2>
-<h3>Multiply Method {{multiply(baseValue)}}</h3>
+<h1>Counter - {{count}}</h1>
+
+<h3>{{name}}</h3>
+
+<!-- Add "@" symbol instead of "v-on:" it is shorthand property -->
+<button @click="increment">Increament</button>
+<button @click="decrement(decrementValue)">Decreament</button>
+<button @click="changeName">Change Name</button>
+
 </template>
 
 <script>
@@ -10,20 +16,23 @@ export default {
   name: 'App',
   data(){
     return{
-      baseMultiplier:5,
-      baseValue:1,
+      name:'DEV',
+      decrementValue:2,
+      count:0
     };
   },
   //method creation
   methods:{
-    add(a,b,c){
-      return a+b+c;
+    changeName(eve){
+      this.name='Deva'
+      console.log('eve',eve)
     },
-    multiply(num){
-     return num*this.baseMultiplier*this.baseValue;
-    }
-    
-
+    increment(){
+        this.count+=1;
+    },
+       decrement(decValue){
+        this.count-=decValue;
+    },
   }
 }
 </script>
