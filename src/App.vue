@@ -1,17 +1,25 @@
-<template>
-  <h2 v-if="num===0">The Number is Zero</h2>
-  <h2 v-else-if="num>0"> The Number is positive</h2>
-  <h2 v-else-if="num<0"> The Number is negative</h2>
-  <h2 v-else>The Number is not Zero</h2>
+<template>  
+    <!-- Array string iteration -->
+  <h4 v-for="(name,index) in names" :key="name">{{index}}{{name}}</h4>
 
-  <template v-if="isDisplay">
-    <h2>Hello </h2>
-    <h2> DEV</h2>
-    <h2>Vue</h2>
+    <!-- Array of Object iteration -->
+  <h5 v-for="(name,index) in fullNames" :key="index">{{name.firstName}} {{name.lastName}}</h5>
+
+    <!-- Array of Array iteration -->
+  <div v-for="(actor,index) in actors" :key="index">
+    <h2>{{actor.name}}</h2>
+    <h4 v-for="(movie,i) in actor.movies" :key="i">{{movie}}</h4>
+  </div>
+
+  <!-- object iteration with key and index properties -->
+  <h2 v-for="(value,key,index) in myInfo" :key="index">{{index+1}} {{key}} {{value}}</h2>
+
+  <!-- template iteration -->
+  <template  v-for="(name,index) in names" :key="name">
+  <h4>{{index}}{{name}}</h4>
+  <hr/>
   </template>
 
-  <h3 v-show="showElement">Using v-show</h3>
-   <h3 v-if="showElement">Using v-if</h3>
 </template>
 
 <script>
@@ -20,9 +28,31 @@ export default {
   name: 'App',
   data(){
     return{
-      num:0,
-      isDisplay:true,
-      showElement:false
+   names:[
+    "Steve",
+    "Tony Stark",
+    "Thanos"
+   ],
+   fullNames:[{firstName: 'Steve', lastName: 'Robson'}, {firstName: 'Tony', lastName: 'Stark'}, {firstName: 'Thanos', lastName:'Dione'}],
+  actors:[
+  {
+    name: "Diane Keaton",
+    movies: ["The Godfather", "Annie Hall"]
+  },
+  {
+    name: "Tony Stark (Robert Downey Jr.)",
+    movies: ["Iron Man", "Avengers: Endgame"]
+  },
+  {
+    name: "Clark Kent (Henry Cavill)",
+    movies: ["Man of Steel", "Batman v Superman: Dawn of Justice"]
+  }
+],
+myInfo:{
+  name:"Dev",
+  Designation:"Software Developer",
+  Department:"IT"
+}
     };
   },
 }
