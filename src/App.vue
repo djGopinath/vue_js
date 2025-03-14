@@ -1,22 +1,31 @@
 <template>
-<h1 v-bind:id="headingId">Heading</h1>
-<button v-bind:disabled="isDisabled">Submit</button>
+
+<!-- shorthand property of v-bind is : with attributes  'v-bind:class' is converted to ':class' -->
+<h1 :id="headingId">Heading</h1>
+<button :disabled="isDisabled">Submit</button>
 <h2 class="underline">Underlined Text</h2>
-<h3 class=underline v-bind:class="status">Status</h3>
-<h4 v-bind:class="isPromoted && 'promoted'">Promoted Movies</h4>
-<h5 v-bind:class="isSoldOut ? 'sold-out':'new-movie'">Soldout? Movies</h5>
-<h6 v-bind:class="[isPromoted && 'promoted', isSoldOut && 'sold-out']">Array Conditioned class</h6>
-<h1 v-bind:class="{
+<h3 class=underline :class="status">Status</h3>
+<h4 :class="isPromoted && 'promoted'">Promoted Movies</h4>
+<h5 :class="isSoldOut ? 'sold-out':'new-movie'">Soldout? Movies</h5>
+<h6 :class="[isPromoted && 'promoted', isSoldOut && 'sold-out']">Array Conditioned class</h6>
+
+<!-- style With condition -->
+<h1 :class="{
   promoted:isPromoted,
   new:!isSoldOut,
   'sold-out':isSoldOut
 }">object Conditioned Class</h1>
-<h2 v-bind:style="{
+
+<!-- inline Style -->
+<h2 :style="{
   color:highlightendColor,fontSize:highlightendFont
 }">Inline Style</h2>
-<h3 v-bind:style="highlightendStyle">StyleObject</h3>
 
+<!-- Style object -->
+<h3 :style="highlightendStyle">StyleObject</h3>
 
+<!-- Style object with Array -->
+<h4 :style="[succesStyleObject,dangerStyleObject,baseStyleObject]" :class="'promoted'">Style object with Array</h4>
 </template>
 
 <script>
@@ -37,16 +46,26 @@ export default {
       fontSize:'10px',
       margin:'60px'
      },
+
+     //style Object will pass into array
      baseStyleObject:{
       fontSize:'30px',
       padding:'10px'
      },
+
      succesStyleObject:{
         color:'pink',
         border:'2px solid #2c3e50',
-        backgroundColor:'white'
-
+        backgroundColor:'white',
+        padding:'20px'
+     },
+      dangerStyleObject:{
+        color:'red',
+        border:'3px solid #990b06',
+        backgroundColor:'#f57e7a',
+        padding:'20px'
      }
+
     };
   },
 }
