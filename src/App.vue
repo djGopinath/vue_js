@@ -1,31 +1,25 @@
-<template>
+<template>  
+    <!-- Array string iteration -->
+  <h4 v-for="(name,index) in names" :key="name">{{index}}{{name}}</h4>
 
-<!-- shorthand property of v-bind is : with attributes  'v-bind:class' is converted to ':class' -->
-<h1 :id="headingId">Heading</h1>
-<button :disabled="isDisabled">Submit</button>
-<h2 class="underline">Underlined Text</h2>
-<h3 class=underline :class="status">Status</h3>
-<h4 :class="isPromoted && 'promoted'">Promoted Movies</h4>
-<h5 :class="isSoldOut ? 'sold-out':'new-movie'">Soldout? Movies</h5>
-<h6 :class="[isPromoted && 'promoted', isSoldOut && 'sold-out']">Array Conditioned class</h6>
+    <!-- Array of Object iteration -->
+  <h5 v-for="(name,index) in fullNames" :key="index">{{name.firstName}} {{name.lastName}}</h5>
 
-<!-- style With condition -->
-<h1 :class="{
-  promoted:isPromoted,
-  new:!isSoldOut,
-  'sold-out':isSoldOut
-}">object Conditioned Class</h1>
+    <!-- Array of Array iteration -->
+  <div v-for="(actor,index) in actors" :key="index">
+    <h2>{{actor.name}}</h2>
+    <h4 v-for="(movie,i) in actor.movies" :key="i">{{movie}}</h4>
+  </div>
 
-<!-- inline Style -->
-<h2 :style="{
-  color:highlightendColor,fontSize:highlightendFont
-}">Inline Style</h2>
+  <!-- object iteration with key and index properties -->
+  <h2 v-for="(value,key,index) in myInfo" :key="index">{{index+1}} {{key}} {{value}}</h2>
 
-<!-- Style object -->
-<h3 :style="highlightendStyle">StyleObject</h3>
+  <!-- template iteration -->
+  <template  v-for="(name,index) in names" :key="name">
+  <h4>{{index}}{{name}}</h4>
+  <hr/>
+  </template>
 
-<!-- Style object with Array -->
-<h4 :style="[succesStyleObject,dangerStyleObject,baseStyleObject]" :class="'promoted'">Style object with Array</h4>
 </template>
 
 <script>
@@ -34,38 +28,31 @@ export default {
   name: 'App',
   data(){
     return{
-     headingId:'header',
-     isDisabled:false,
-     status:'danger',
-     isPromoted:true,
-     isSoldOut:true,
-     highlightendColor:'orange',
-     highlightendFont:'20px',
-     highlightendStyle:{
-      color:'purple',
-      fontSize:'10px',
-      margin:'60px'
-     },
-
-     //style Object will pass into array
-     baseStyleObject:{
-      fontSize:'30px',
-      padding:'10px'
-     },
-
-     succesStyleObject:{
-        color:'pink',
-        border:'2px solid #2c3e50',
-        backgroundColor:'white',
-        padding:'20px'
-     },
-      dangerStyleObject:{
-        color:'red',
-        border:'3px solid #990b06',
-        backgroundColor:'#f57e7a',
-        padding:'20px'
-     }
-
+   names:[
+    "Steve",
+    "Tony Stark",
+    "Thanos"
+   ],
+   fullNames:[{firstName: 'Steve', lastName: 'Robson'}, {firstName: 'Tony', lastName: 'Stark'}, {firstName: 'Thanos', lastName:'Dione'}],
+  actors:[
+  {
+    name: "Diane Keaton",
+    movies: ["The Godfather", "Annie Hall"]
+  },
+  {
+    name: "Tony Stark (Robert Downey Jr.)",
+    movies: ["Iron Man", "Avengers: Endgame"]
+  },
+  {
+    name: "Clark Kent (Henry Cavill)",
+    movies: ["Man of Steel", "Batman v Superman: Dawn of Justice"]
+  }
+],
+myInfo:{
+  name:"Dev",
+  Designation:"Software Developer",
+  Department:"IT"
+}
     };
   },
 }
