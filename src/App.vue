@@ -1,24 +1,12 @@
 <template>  
-    <!-- Array string iteration -->
-  <h4 v-for="(name,index) in names" :key="name">{{index}}{{name}}</h4>
+<h1>Counter - {{count}}</h1>
 
-    <!-- Array of Object iteration -->
-  <h5 v-for="(name,index) in fullNames" :key="index">{{name.firstName}} {{name.lastName}}</h5>
+<h3>{{name}}</h3>
 
-    <!-- Array of Array iteration -->
-  <div v-for="(actor,index) in actors" :key="index">
-    <h2>{{actor.name}}</h2>
-    <h4 v-for="(movie,i) in actor.movies" :key="i">{{movie}}</h4>
-  </div>
-
-  <!-- object iteration with key and index properties -->
-  <h2 v-for="(value,key,index) in myInfo" :key="index">{{index+1}} {{key}} {{value}}</h2>
-
-  <!-- template iteration -->
-  <template  v-for="(name,index) in names" :key="name">
-  <h4>{{index}}{{name}}</h4>
-  <hr/>
-  </template>
+<!-- Add "@" symbol instead of "v-on:" it is shorthand property -->
+<button @click="increment">Increament</button>
+<button @click="decrement(decrementValue)">Decreament</button>
+<button @click="changeName">Change Name</button>
 
 </template>
 
@@ -28,33 +16,24 @@ export default {
   name: 'App',
   data(){
     return{
-   names:[
-    "Steve",
-    "Tony Stark",
-    "Thanos"
-   ],
-   fullNames:[{firstName: 'Steve', lastName: 'Robson'}, {firstName: 'Tony', lastName: 'Stark'}, {firstName: 'Thanos', lastName:'Dione'}],
-  actors:[
-  {
-    name: "Diane Keaton",
-    movies: ["The Godfather", "Annie Hall"]
-  },
-  {
-    name: "Tony Stark (Robert Downey Jr.)",
-    movies: ["Iron Man", "Avengers: Endgame"]
-  },
-  {
-    name: "Clark Kent (Henry Cavill)",
-    movies: ["Man of Steel", "Batman v Superman: Dawn of Justice"]
-  }
-],
-myInfo:{
-  name:"Dev",
-  Designation:"Software Developer",
-  Department:"IT"
-}
+      name:'DEV',
+      decrementValue:2,
+      count:0
     };
   },
+  //method creation
+  methods:{
+    changeName(eve){
+      this.name='Deva'
+      console.log('eve',eve)
+    },
+    increment(){
+        this.count+=1;
+    },
+       decrement(decValue){
+        this.count-=decValue;
+    },
+  }
 }
 </script>
 
