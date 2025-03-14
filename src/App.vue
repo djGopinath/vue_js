@@ -1,25 +1,7 @@
 <template>  
-    <!-- Array string iteration -->
-  <h4 v-for="(name,index) in names" :key="name">{{index}}{{name}}</h4>
-
-    <!-- Array of Object iteration -->
-  <h5 v-for="(name,index) in fullNames" :key="index">{{name.firstName}} {{name.lastName}}</h5>
-
-    <!-- Array of Array iteration -->
-  <div v-for="(actor,index) in actors" :key="index">
-    <h2>{{actor.name}}</h2>
-    <h4 v-for="(movie,i) in actor.movies" :key="i">{{movie}}</h4>
-  </div>
-
-  <!-- object iteration with key and index properties -->
-  <h2 v-for="(value,key,index) in myInfo" :key="index">{{index+1}} {{key}} {{value}}</h2>
-
-  <!-- template iteration -->
-  <template  v-for="(name,index) in names" :key="name">
-  <h4>{{index}}{{name}}</h4>
-  <hr/>
-  </template>
-
+//Accessing Methods
+<h2>Add Mehtod - {{add(2,4,4)}}</h2>
+<h3>Multiply Method {{multiply(baseValue)}}</h3>
 </template>
 
 <script>
@@ -28,33 +10,21 @@ export default {
   name: 'App',
   data(){
     return{
-   names:[
-    "Steve",
-    "Tony Stark",
-    "Thanos"
-   ],
-   fullNames:[{firstName: 'Steve', lastName: 'Robson'}, {firstName: 'Tony', lastName: 'Stark'}, {firstName: 'Thanos', lastName:'Dione'}],
-  actors:[
-  {
-    name: "Diane Keaton",
-    movies: ["The Godfather", "Annie Hall"]
-  },
-  {
-    name: "Tony Stark (Robert Downey Jr.)",
-    movies: ["Iron Man", "Avengers: Endgame"]
-  },
-  {
-    name: "Clark Kent (Henry Cavill)",
-    movies: ["Man of Steel", "Batman v Superman: Dawn of Justice"]
-  }
-],
-myInfo:{
-  name:"Dev",
-  Designation:"Software Developer",
-  Department:"IT"
-}
+      baseMultiplier:5,
+      baseValue:1,
     };
   },
+  //method creation
+  methods:{
+    add(a,b,c){
+      return a+b+c;
+    },
+    multiply(num){
+     return num*this.baseMultiplier*this.baseValue;
+    }
+    
+
+  }
 }
 </script>
 
