@@ -1,37 +1,108 @@
 <template>  
-<h1>Counter - {{count}}</h1>
+<form @submit.prevent="submitForm">
+    <div>
+      <label>Name</label>
+      <input type="text" id="name" v-model.trim.lazy="formValues.name"/>
+    </div>
 
-<h3>{{name}}</h3>
+     <div>
+      <label for="age">Age</label>
+      <input type="number" id="age" v-model.number="formValues.age"/>
+    </div>
 
-<!-- Add "@" symbol instead of "v-on:" it is shorthand property -->
-<button @click="increment">Increament</button>
-<button @click="decrement(decrementValue)">Decreament</button>
-<button @click="changeName">Change Name</button>
+     <div>
+      <label>Profile Summary</label>
+      <textarea v-model="formValues.profileSummary" />
+    </div>
 
+     <div>
+      <label>Country</label>
+      <select v-model="formValues.country">
+        <option value="">Select a country</option>
+        <option value="india">India</option>
+        <option value="vietnam">Vietnam</option>
+        <option value="singapore">Singapore</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="jobLocation">Job Location:</label>
+      <select v-model="formValues.jobLocation" multiple>
+        <option value="india">India</option>
+        <option value="vietnam">Vietnam</option>
+        <option value="singapore">Singapore</option>
+      </select>
+    </div>
+
+    <div>
+      <input type="checkbox" v-model="formValues.remoteWork" true-value="yes" false-value="no" />
+      <label>Open to remote work?</label>
+    </div>
+
+    <div>
+      <label>Skill set</label>
+      <input
+        type="checkbox"
+        id="html"
+        value="html"
+        v-model="formValues.skillSet"
+      />
+      <label>HTML</label>
+      <input
+        type="checkbox"
+        id="css"
+        value="css"
+        v-model="formValues.skillSet"
+      />
+      <label>CSS</label>
+      <input
+        type="checkbox"
+        id="javascript"
+        value="javascript"
+        v-model="formValues.skillSet"
+      />
+      <label>JavaScript</label>
+    </div>
+
+     <div>
+      <label>Years of Experience</label>
+      <input type="radio" value="0-2" v-model="formValues.yearsOfExperience" />
+      <label>0-2</label>
+      <input type="radio" value="3-5" v-model="formValues.yearsOfExperience" />
+      <label>3-5</label>
+      <input type="radio" value="6-10" v-model="formValues.yearsOfExperience" />
+      <label>5-10</label>
+      <input type="radio" value="10+" v-model="formValues.yearsOfExperience" />
+      <label>10+</label>
+    </div>
+    <div>
+      <button>Submit</button>
+    </div>
+</form>
 </template>
 
-<script>
+<script>  
 
 export default {
   name: 'App',
   data(){
     return{
-      name:'DEV',
-      decrementValue:2,
-      count:0
+      formValues:{
+        name:'',
+        profileSummary:'',
+        country:'',
+        jobLocation:[],
+        remoteWork:"no",
+        skillSet:[],
+        yearsOfExperience:'',
+        age:null
+      }
+
     };
   },
-  //method creation
   methods:{
-    changeName(eve){
-      this.name='Deva'
-      console.log('eve',eve)
-    },
-    increment(){
-        this.count+=1;
-    },
-       decrement(decValue){
-        this.count-=decValue;
+    submitForm() {
+      console.log('form values', this.formValues)
     },
   }
 }
@@ -47,18 +118,34 @@ export default {
   margin-top: 60px;
 }
 
-.underline{
-  text-decoration: underline;
-}
-.promoted{
-  font-style: italic;
-}
-
-.new-movie{
-  color:green
+label {
+  font-weight: bold;
+  display: flex;
+  margin-bottom: 5px;
 }
 
-.sold-out{
-  color: red;
+input + label {
+  font-weight: bold;
+  display: inline-flex;
+  margin-right: 20px;
+}
+
+input[type='text'],
+textarea,
+select {
+  display: block;
+  width: 400px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+div{
+  width: 300px;
 }
 </style>
