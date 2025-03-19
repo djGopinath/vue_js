@@ -1,84 +1,12 @@
 <template>  
-<form @submit.prevent="submitForm">
-    <div>
-      <label>Name</label>
-      <input type="text" id="name" v-model.trim.lazy="formValues.name"/>
-    </div>
 
-     <div>
-      <label for="age">Age</label>
-      <input type="number" id="age" v-model.number="formValues.age"/>
-    </div>
 
-     <div>
-      <label>Profile Summary</label>
-      <textarea v-model="formValues.profileSummary" />
-    </div>
-
-     <div>
-      <label>Country</label>
-      <select v-model="formValues.country">
-        <option value="">Select a country</option>
-        <option value="india">India</option>
-        <option value="vietnam">Vietnam</option>
-        <option value="singapore">Singapore</option>
-      </select>
-    </div>
-
-    <div>
-      <label for="jobLocation">Job Location:</label>
-      <select v-model="formValues.jobLocation" multiple>
-        <option value="india">India</option>
-        <option value="vietnam">Vietnam</option>
-        <option value="singapore">Singapore</option>
-      </select>
-    </div>
-
-    <div>
-      <input type="checkbox" v-model="formValues.remoteWork" true-value="yes" false-value="no" />
-      <label>Open to remote work?</label>
-    </div>
-
-    <div>
-      <label>Skill set</label>
-      <input
-        type="checkbox"
-        id="html"
-        value="html"
-        v-model="formValues.skillSet"
-      />
-      <label>HTML</label>
-      <input
-        type="checkbox"
-        id="css"
-        value="css"
-        v-model="formValues.skillSet"
-      />
-      <label>CSS</label>
-      <input
-        type="checkbox"
-        id="javascript"
-        value="javascript"
-        v-model="formValues.skillSet"
-      />
-      <label>JavaScript</label>
-    </div>
-
-     <div>
-      <label>Years of Experience</label>
-      <input type="radio" value="0-2" v-model="formValues.yearsOfExperience" />
-      <label>0-2</label>
-      <input type="radio" value="3-5" v-model="formValues.yearsOfExperience" />
-      <label>3-5</label>
-      <input type="radio" value="6-10" v-model="formValues.yearsOfExperience" />
-      <label>5-10</label>
-      <input type="radio" value="10+" v-model="formValues.yearsOfExperience" />
-      <label>10+</label>
-    </div>
-    <div>
-      <button>Submit</button>
-    </div>
-</form>
+  <input type="text" v-model="movie"/>
+  <input type="text" v-model="movieInfo.title" />
+  <input type="text" v-model="movieInfo.actor" />
+ <button @click="movieList = movieList.concat(['Wonder Woman'])">
+    Add movie
+  </button>
 </template>
 
 <script>  
@@ -87,24 +15,45 @@ export default {
   name: 'App',
   data(){
     return{
-      formValues:{
-        name:'',
-        profileSummary:'',
-        country:'',
-        jobLocation:[],
-        remoteWork:"no",
-        skillSet:[],
-        yearsOfExperience:'',
-        age:null
-      }
-
-    };
+      movie:'Batman',
+      movieInfo:{
+        title:'',
+        actor:'',
+      },
+      movieList:['Batman', 'Iron Man']
+    } 
   },
-  methods:{
-    submitForm() {
-      console.log('form values', this.formValues)
+  methods:{},
+  computed:{},
+  watch:{
+    volume(newVolume,oldVolume){
+      if(newVolume > oldVolume && newVolume ===16){
+        alert("Listening in High Volume")
+      }
+    }, 
+
+  movie: {
+      handler(newValue) {
+        console.log(`Calling API with movie name = ${newValue}`)
+      },
+      immediate: true,
     },
-  }
+  movieInfo: {
+    handler(newValue) {
+      console.log(
+        `Calling API with movie title = ${newValue.title} and actor = ${newValue.actor}`
+      )
+    },
+    deep: true,
+  },
+
+  movieList: {
+      handler(newValue) {
+        console.log(`Updated list ${newValue}`)
+      },
+      // deep: true,
+    },
+  },
 }
 </script>
 
