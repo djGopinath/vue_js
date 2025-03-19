@@ -1,13 +1,12 @@
 <template>  
-  <h3>Full Name is {{fullname}}</h3>
-  <button @click="items.push({id:4,
-        name:'Item 4',
-        price:400})">Total</button>
-  <h4>Total Amount is {{total}}</h4>
- <template  v-for="item in items" :key="item.id">
-  <h2 v-if="item.price>200">{{item.name}}</h2>
- </template>
- <h4 v-for="it in expensiveItem" :key="it.id">{{it.name}}</h4>
+
+
+  <input type="text" v-model="movie"/>
+  <input type="text" v-model="movieInfo.title" />
+  <input type="text" v-model="movieInfo.actor" />
+ <button @click="movieList = movieList.concat(['Wonder Woman'])">
+    Add movie
+  </button>
 </template>
 
 <script>  
@@ -16,37 +15,45 @@ export default {
   name: 'App',
   data(){
     return{
-      firstName:'John',
-      lastName:'Doe',
-      items:[{
-        id:1,
-        name:'Item 1',
-        price:100
+      movie:'Batman',
+      movieInfo:{
+        title:'',
+        actor:'',
       },
-      {
-        id:2,
-        name:'Item 2',
-        price:200
-      },
-      {
-        id:3,
-        name:'Item 3',
-        price:300
-      }]
-    };
+      movieList:['Batman', 'Iron Man']
+    } 
   },
   methods:{},
-  computed:{
-  fullname(){
-    return `${this.firstName}-${this.lastName}`;
+  computed:{},
+  watch:{
+    volume(newVolume,oldVolume){
+      if(newVolume > oldVolume && newVolume ===16){
+        alert("Listening in High Volume")
+      }
+    }, 
+
+  movie: {
+      handler(newValue) {
+        console.log(`Calling API with movie name = ${newValue}`)
+      },
+      immediate: true,
+    },
+  movieInfo: {
+    handler(newValue) {
+      console.log(
+        `Calling API with movie title = ${newValue.title} and actor = ${newValue.actor}`
+      )
+    },
+    deep: true,
   },
-  total(){
-    return this.items.reduce((total,curr)=>(total=total+curr.price),0)
+
+  movieList: {
+      handler(newValue) {
+        console.log(`Updated list ${newValue}`)
+      },
+      // deep: true,
+    },
   },
-  expensiveItem(){
-    return this.items.filter((item)=>item.price > 100)
-  }
-}
 }
 </script>
 
