@@ -1,62 +1,23 @@
 <template>  
-
-
-  <input type="text" v-model="movie"/>
-  <input type="text" v-model="movieInfo.title" />
-  <input type="text" v-model="movieInfo.actor" />
- <button @click="movieList = movieList.concat(['Wonder Woman'])">
-    Add movie
-  </button>
+<DummyInput />
 </template>
-
 <script>  
-
+import DummyInput from './components/DummyInput.vue';
 export default {
   name: 'App',
-  data(){
-    return{
-      movie:'Batman',
-      movieInfo:{
-        title:'',
-        actor:'',
-      },
-      movieList:['Batman', 'Iron Man']
-    } 
+  components:{
+    DummyInput
   },
-  methods:{},
-  computed:{},
-  watch:{
-    volume(newVolume,oldVolume){
-      if(newVolume > oldVolume && newVolume ===16){
-        alert("Listening in High Volume")
-      }
-    }, 
+ data(){
+    return {
+      name:''
+    }
+},
+methods:{
 
-  movie: {
-      handler(newValue) {
-        console.log(`Calling API with movie name = ${newValue}`)
-      },
-      immediate: true,
-    },
-  movieInfo: {
-    handler(newValue) {
-      console.log(
-        `Calling API with movie title = ${newValue.title} and actor = ${newValue.actor}`
-      )
-    },
-    deep: true,
-  },
-
-  movieList: {
-      handler(newValue) {
-        console.log(`Updated list ${newValue}`)
-      },
-      // deep: true,
-    },
-  },
+}
 }
 </script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
