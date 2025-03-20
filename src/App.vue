@@ -1,23 +1,34 @@
 <template>  
-<ComponentC />
-<h4>App component username is  {{name}}</h4>
+<h2>Custom Event</h2>
+<button @click="showPopup=true"> Show Popup</button>
+<PopupDemo v-show="showPopup" @close="closePopup" />
+<!-- <ComponentC />
+<h4>App component username is  {{name}}</h4> -->
 </template>
 
 <script>  
-import ComponentC from './components/ComponentC.vue'
+// import ComponentC from './components/ComponentC.vue'
+import PopupDemo from './components/PopupDemo.vue'
 export default {
   name: 'App',
  components:{
-  ComponentC
+  PopupDemo
+  // ComponentC
  },
  data(){
-  return{
-    name:'Delsid'
-   }
- },
- provide() {
- return { userName:'Dev'}
- }
+    return {
+      showPopup: false
+    }
+},
+methods:{
+  closePopup(name){
+this.showPopup = false;
+console.log("name", name)
+  }
+}
+//  provide() {
+//  return { userName:'Dev'}
+//  }
 }
 </script>
 
