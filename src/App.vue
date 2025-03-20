@@ -1,59 +1,26 @@
 <template>  
-
-
-  <input type="text" v-model="movie"/>
-  <input type="text" v-model="movieInfo.title" />
-  <input type="text" v-model="movieInfo.actor" />
- <button @click="movieList = movieList.concat(['Wonder Woman'])">
-    Add movie
-  </button>
+<!-- <UserGreet name="Bruce" />
+<UserGreet :name="name" /> -->
+<DummyArticle id="my-article" title="Article Title" :likes="50" isPublished="true"/>
 </template>
 
 <script>  
-
+// import UserGreet from './components/UserGreet.vue';
+import DummyArticle from './components/DummyArticle.vue';
 export default {
   name: 'App',
-  data(){
-    return{
-      movie:'Batman',
-      movieInfo:{
-        title:'',
-        actor:'',
-      },
-      movieList:['Batman', 'Iron Man']
-    } 
-  },
-  methods:{},
-  computed:{},
-  watch:{
-    volume(newVolume,oldVolume){
-      if(newVolume > oldVolume && newVolume ===16){
-        alert("Listening in High Volume")
-      }
-    }, 
+ components:{
+  // UserGreet,
+  DummyArticle
+ },
+ data(){
+  return{
+    name:'Delsid',
 
-  movie: {
-      handler(newValue) {
-        console.log(`Calling API with movie name = ${newValue}`)
-      },
-      immediate: true,
-    },
-  movieInfo: {
-    handler(newValue) {
-      console.log(
-        `Calling API with movie title = ${newValue.title} and actor = ${newValue.actor}`
-      )
-    },
-    deep: true,
-  },
+  }
+ }
 
-  movieList: {
-      handler(newValue) {
-        console.log(`Updated list ${newValue}`)
-      },
-      // deep: true,
-    },
-  },
+  
 }
 </script>
 
