@@ -1,26 +1,23 @@
 <template>  
-<!-- <UserGreet name="Bruce" />
-<UserGreet :name="name" /> -->
-<DummyArticle id="my-article" title="Article Title" :likes="50" isPublished="true"/>
+<ComponentC />
+<h4>App component username is  {{name}}</h4>
 </template>
 
 <script>  
-// import UserGreet from './components/UserGreet.vue';
-import DummyArticle from './components/DummyArticle.vue';
+import ComponentC from './components/ComponentC.vue'
 export default {
   name: 'App',
  components:{
-  // UserGreet,
-  DummyArticle
+  ComponentC
  },
  data(){
   return{
-    name:'Delsid',
-
-  }
+    name:'Delsid'
+   }
+ },
+ provide() {
+ return { userName:'Dev'}
  }
-
-  
 }
 </script>
 
