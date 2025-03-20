@@ -1,37 +1,23 @@
 <template>  
-<h2>Custom Event</h2>
-<button @click="showPopup=true"> Show Popup</button>
-<PopupDemo v-show="showPopup" @close="closePopup" />
-<!-- <ComponentC />
-<h4>App component username is  {{name}}</h4> -->
+<DummyInput />
 </template>
-
 <script>  
-// import ComponentC from './components/ComponentC.vue'
-import PopupDemo from './components/PopupDemo.vue'
+import DummyInput from './components/DummyInput.vue';
 export default {
   name: 'App',
- components:{
-  PopupDemo
-  // ComponentC
- },
+  components:{
+    DummyInput
+  },
  data(){
     return {
-      showPopup: false
+      name:''
     }
 },
 methods:{
-  closePopup(name){
-this.showPopup = false;
-console.log("name", name)
-  }
+
 }
-//  provide() {
-//  return { userName:'Dev'}
-//  }
 }
 </script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
